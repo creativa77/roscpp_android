@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# TODO: Check that environment actually exists
+source /opt/ros/indigo/setup.bash
+
 my_loc="$(cd "$(dirname $0)" && pwd)"
 source $my_loc/config.sh
 source $my_loc/utils.sh

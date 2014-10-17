@@ -225,22 +225,6 @@
     uri: https://github.com/algron/rospack.git
     version: android
 - git:
-    local-name: ardrone_autonomy
-    uri: https://github.com/algron/ardrone_autonomy.git
-    version: android
-- git:
     local-name: navigation
     uri: https://github.com/algron/navigation.git
     version: android
-- git:
-    local-name: algron_msgs
-    uri: git@github.com:algron/algron_msgs.git
-    version: master
-- git:
-    local-name: ardrone_autonav
-    uri: git@github.com:algron/ardrone_autonav.git
-    version: master
-- git:
-    local-name: straight_line_planner
-    uri: git@github.com:algron/straight_line_planner.git
-    version: master
