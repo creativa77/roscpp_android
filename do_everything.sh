@@ -140,125 +140,125 @@ if [[ $skip -ne 1 ]] ; then
     echo
 
     # patch CMakeLists.txt for lz4 library - Build as a library
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/lz4.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/lz4.patch
 
     # Patch collada - Build as static lib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/collada_dom.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/collada_dom.patch
 
     #  Patch assimp - Build as static lib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/assimp.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/assimp.patch
 
     # Patch urdfdom - Build as static lib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/urdfdom.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/urdfdom.patch
 
     # Patch libiconv - Remove 'gets' error
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/libiconv.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/libiconv.patch
 
     # Patch opencv - Fix installation path
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/opencv.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/opencv.patch
 
     # Patch qhull - Don't install shared libraries
     # TODO: Remove shared libraries to avoid hack in parse_libs.py
-    #patch -p0 -N -d $prefix < /opt/roscpp_android/patches/qhull.patch
+    #patch -p0 -N -d $prefix < $my_loc/patches/qhull.patch
 
     # Patch eigen - Rename param as some constant already has the same name
     # TODO: Fork and push changes to creativa's repo
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/eigen.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/eigen.patch
 
     # Patch bfl - Build as static lib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/bfl.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/bfl.patch
 
     # Patch orocos_kdl - Build as static lib and change constant name
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/orocos_kdl.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/orocos_kdl.patch
 
     # Patch log4cxx - Add missing headers
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/log4cxx.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/log4cxx.patch
 
     # Patch fcl - Add ccd library cmake variables
     # TODO: The correct way to handle this would be to create .cmake files for ccd and do a findpackage(ccd)
     # Also, this can go inside the catkin_ws but the headers don't get installed on the catkin_make and are
     # needed by moveit_core during compilation
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/fcl.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/fcl.patch
 
     # Patch pcrecpp - Add findpackage configs
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/pcrecpp.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/pcrecpp.patch
 
 
     ## ROS patches
 
     # Patch roslib - weird issue with rospack.
     # TODO: Need to look further (only on catkin_make_isolated)
-    # patch -p0 -N -d $prefix < /opt/roscpp_android/patches/roslib.patch
+    # patch -p0 -N -d $prefix < $my_loc/patches/roslib.patch
 
     # Patch collada_parser - cmake detects mkstemps even though Android does not support it
     # TODO: investigate how to prevent cmake to detect system mkstemps
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/collada_parser.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/collada_parser.patch
 
     # Patch laser_assembler - Remove testing for Android
     # TODO: It seems like there may be a better way to handle the test issues
     # http://stackoverflow.com/questions/22055741/googletest-for-android-ndk
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/laser_assembler.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/laser_assembler.patch
 
     # Patch laser_filters - Remove testing for Android
     # TODO: It seems like there may be a better way to handle the test issues
     # http://stackoverflow.com/questions/22055741/googletest-for-android-ndk
     # https://source.android.com/reference/com/android/tradefed/testtype/GTest.html
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/laser_filters.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/laser_filters.patch
 
     # Patch camera_info_manager - remove testing for Android
     # TODO: It seems like there may be a better way to handle the test issues
     # http://stackoverflow.com/questions/22055741/googletest-for-android-ndk
     # https://source.android.com/reference/com/android/tradefed/testtype/GTest.html
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/camera_info_manager.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/camera_info_manager.patch
 
     # Patch cv_bridge - remove Python dependencies
     # TODO: https://github.com/ros-perception/vision_opencv/pull/55 merged, need to wait until new version (current 1.11.7)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/cv_bridge.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/cv_bridge.patch
 
     # Patch robot_pose_ekf - Add bfl library cmake variables, also, remove tests
     # TODO: The correct way to handle this would be to create .cmake files for bfl and do a findpackage(orocos-bfl)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/robot_pose_ekf.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/robot_pose_ekf.patch
 
     # Patch robot_state_publisher - Add log4cxx library cmake variables, also, add ARCHIVE DESTINATION
     # TODO: The correct way to handle this would be to create .cmake files for log4cxx and do a findpackage(log4cxx)
     # TODO: Create PR to add ARCHIVE DESTINATION
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/robot_state_publisher.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/robot_state_publisher.patch
 
     # Patch moveit_core - Add fcl library cmake variables
     # TODO: The correct way to handle this would be to create .cmake files for fcl and do a findpackage(fcl)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/moveit_core.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/moveit_core.patch
 
     # Patch moveit_core plugins - Add ARCHIVE DESTINATION
     # TODO: PR merged: https://github.com/ros-planning/moveit_core/pull/251
     # Wait for next release to remove (current 0.6.15)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/moveit_core_plugins.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/moveit_core_plugins.patch
 
     # Patch camera_calibration_parsers - Fix yaml-cpp dependency
     # TODO: PR created: https://github.com/ros-perception/image_common/pull/36
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/camera_calibration_parsers.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/camera_calibration_parsers.patch
 
     # Patch image_view - Remove GTK definition
     # TODO: Fixed in https://github.com/ros-perception/image_pipeline/commit/829b7a1ab0fa1927ef3f17f66f9f77ac47dbaacc
     # Wait dor next release to remove (current 1.12.13)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/image_view.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/image_view.patch
 
     # Patch urdf - Don't use pkconfig for android
     # TODO: PR created: https://github.com/ros/robot_model/pull/111
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/urdf.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/urdf.patch
 
     # Patch global_planner - Add angles dependency
     # TODO: PR merged: https://github.com/ros-planning/navigation/pull/359
     # Wait for next release to remove (current 1.12.4)
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/global_planner.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/global_planner.patch
 
 
     ## Demo Application specific patches
 
     # Patch move_base - Remove pluginlib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/move_base.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/move_base.patch
 
     # Patch costmap_2d - Remove pluginlib
-    patch -p0 -N -d $prefix < /opt/roscpp_android/patches/costmap_2d.patch
+    patch -p0 -N -d $prefix < $my_loc/patches/costmap_2d.patch
 
 fi
 
