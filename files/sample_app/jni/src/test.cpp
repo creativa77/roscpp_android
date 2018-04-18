@@ -61,9 +61,15 @@ void android_main(android_app *papp) {
     app_dummy();
 
     int argc = 3;
-    // TODO: don't hardcode ip addresses
+    // TODO: handle the master uri and device IP at runtime
+#ifndef ROS_MASTER_URI
+#error ROS_MASTER_URI MUST be set in files/sample_app/jni/Android.mk.in
+#endif
+#ifndef ROS_ANDROID_IP
+#error ROS_ANDROID_IP MUST be set in files/sample_app/jni/Android.mk.in
+#endif
     // %Tag(CONF_ARGS)%
-    char *argv[] = {"nothing_important" , "__master:=http://192.168.1.100:11311", "__ip:=192.168.1.101"};
+    char *argv[] = {"nothing_important" , ROS_MASTER_URI, ROS_ANDROID_IP};
     // %EndTag(CONF_ARGS)%
     //strcpy(argv[0], 'nothing_important');
     //argv[1] = '__master:=http://10.52.90.103:11311';

@@ -16,9 +16,15 @@ void android_main(android_app *papp) {
     app_dummy();
 
     int argc = 4;
-    // TODO: don't hardcode ip addresses
-    char *argv[] = {"nothing_important" , "__master:=http://192.168.1.100:11311",
-                    "__ip:=192.168.1.101", "cmd_vel:=navigation_velocity_smoother/raw_cmd_vel"};
+
+    // TODO: handle the master uri and device IP at runtime
+#ifndef ROS_MASTER_URI
+#error ROS_MASTER_URI MUST be set in files/move_base_app/jni/Android.mk.in
+#endif
+#ifndef ROS_ANDROID_IP
+#error ROS_ANDROID_IP MUST be set in files/move_base_app/jni/Android.mk.in
+#endif
+    char *argv[] = {"nothing_important" , ROS_MASTER_URI, ROS_ANDROID_IP, "cmd_vel:=navigation_velocity_smoother/raw_cmd_vel"};
 
     for(int i = 0; i < argc; i++){
         log(argv[i]);
