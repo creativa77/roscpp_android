@@ -9,7 +9,7 @@ die() {
 
 download() {
     if [ ! -z $1 ]; then
-        cmd_exists curl && curl -L $1 -O || wget $1
+        cmd_exists curl && curl -L $1 -O || wget --no-check-certificate $1
     else 
         echo "skipping download of $1 as it's already local"
     fi
@@ -17,12 +17,12 @@ download() {
 
 download_bz2() {
     echo "downloading $1"
-    ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar jx -C $2
+    ( cmd_exists curl && curl -L $1 || wget --no-check-certificate -O - $1 ) | tar jx -C $2
 }
 
 download_gz() {
     echo "downloading $1"
-    ( cmd_exists curl && curl -L $1 || wget -O - $1 ) | tar zx -C $2
+    ( cmd_exists curl && curl -L $1 || wget --no-check-certificate -O - $1 ) | tar zx -C $2
 }
 
 download_zip() {
@@ -32,7 +32,7 @@ download_zip() {
 
     tmpdir=$(mktemp -d /tmp/rba.XXXX)
     tmpfile=$tmpdir/gtest.zip
-    ( cmd_exists curl && curl -L $1 -o $tmpfile || wget $1 -O $tmpfile ) && unzip $tmpfile -d $2
+    ( cmd_exists curl && curl -L $1 -o $tmpfile || wget --no-check-certificate $1 -O $tmpfile ) && unzip $tmpfile -d $2
     rm -rf $tmpdir
 }
 

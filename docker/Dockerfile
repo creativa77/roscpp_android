@@ -24,7 +24,7 @@ RUN wget http://dl.google.com/android/android-sdk_r23.0.2-linux.tgz
 RUN tar -xvf android-sdk_r23.0.2-linux.tgz -C /opt
 ENV PATH /opt/android-sdk-linux/tools:/opt/android-sdk-linux/platform-tools:$PATH
 ENV ANDROID_HOME /opt/android-sdk-linux
-RUN (while true; do echo 'y'; sleep 2; done) | android update sdk -u -t 2,3,7,8,9,11,13,16,56,57
+RUN (while true; do echo 'y'; sleep 2; done) | android update sdk -u -t 2,3,7,8,9,11,13,16,56,57 --proxy-host mirrors.neusoft.edu.cn --proxy-port 80
 
 # Install Python libraries
 RUN apt-get install python-lxml -y

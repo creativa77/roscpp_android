@@ -60,7 +60,7 @@ elif [ $1 == 'libiconv' ]; then
     URL=http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
     COMP='gz'
 elif [ $1 == 'log4cxx' ]; then
-    URL=http://mirrors.sonic.net/apache/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
+    URL=https://archive.apache.org/dist/logging/log4cxx/0.10.0/apache-log4cxx-0.10.0.tar.gz
     COMP='gz'
 elif [ $1 == 'libxml2' ]; then
     URL=ftp://xmlsoft.org/libxml2/libxml2-2.9.1.tar.gz
